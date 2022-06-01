@@ -10,7 +10,7 @@
     Python is a programming language with a high level of abstraction. It is a straightforward and simple programming language. It is the world's most popular programming language. Django is a free and open-source backend web framework built on Python. We're implementing DBeaver, a SQL client software program and database administration tool in our project. Our IDE is Visual Studio Code (Integrated Development Environment).
 
 
-#PROCEDURE:
+# PROCEDURE:
     
     - install the latest python version.
     - install the latest Django version.

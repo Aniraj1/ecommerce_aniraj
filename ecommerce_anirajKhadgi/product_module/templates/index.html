@@ -1,24 +1,17 @@
-{% extends "base.html" %} {% block title %} Search {% endblock %} {% block header %} Search Product {% endblock %} {% block content %}
+{% extends "base.html" %} 
+{% block title %} Search {% endblock %} 
+{% block header %} Search Product {% endblock %} 
+{% block content %}
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg">
   <div>
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link text-dark" href="/ ">All</a>
-      </li>
-      {% for category in categories %}
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="/?category={{category.id}}"
-          >{{category.name}}</a
-        >
-      </li>
-      {% endfor %} {% for brand in brands %}
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="/?brand={{brand.id}}"
-          >{{brand.name}}</a
-        >
-      </li>
+      <li class="nav-item active"><a class="nav-link text-dark" href="/ ">All</a></li>
+  {% for category in categories %}
+      <li class="nav-item"><a class="nav-link text-dark" href="/?category={{category.id}}">{{category.name}}</a></li>
+  {% endfor %} {% for brand in brands %}
+      <li class="nav-item"><a class="nav-link text-dark" href="/?brand={{brand.id}}">{{brand.name}}</a></li>
       {% endfor %}
     </ul>
     <!-- Links -->
@@ -70,13 +63,7 @@
         class="form-control"
         style="width: 100px"
       />
-      <button
-        id="btn-add-to-cart"
-        class="btn btn-primary btn-md"
-        type="submit"
-        data-toggle="modal"
-        data-target="#cart-model"
-      >
+      <button id="btn-add-to-cart" class="btn btn-primary btn-md" type="submit" data-toggle="modal" data-target="#cart-model">
         <i class="fa fa- shopping-cart" aria-hidden="true"></i> Add to cart
       </button>
     </form>
@@ -91,8 +78,7 @@
         <td>Color Code</td>
         <td>
           <div
-            style="height: 25px; width: 25px; background-
-color: {{ product.color_code }};"
+            style="height: 25px; width: 25px; background-color: {{ product.color_code }};"
           ></div>
         </td>
       </tr>

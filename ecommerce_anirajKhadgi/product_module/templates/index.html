@@ -1,38 +1,42 @@
 {% extends "base.html" %} 
-{% block title %} Search {% endblock %} 
-{% block header %} Search Product {% endblock %} 
+{% block title %} E-Commerce {% endblock %} 
+{% block header %} E-Store {% endblock %} 
 {% block content %}
 <!--Navbar-->
-<nav class="navbar navbar-expand-lg">
-  <div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    
+  <a class="navbar-brand" href="#">E-commerce</a>
+  
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+  
+  </button>
+
     <!-- Links -->
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active"><a class="nav-link text-dark" href="/ ">All</a></li>
-  {% for category in categories %}
-      <li class="nav-item"><a class="nav-link text-dark" href="/?category={{category.id}}">{{category.name}}</a></li>
-  {% endfor %} {% for brand in brands %}
-      <li class="nav-item"><a class="nav-link text-dark" href="/?brand={{brand.id}}">{{brand.name}}</a></li>
+    <div class="collapse navbar-collapse" id="#navbarTogglerDemo02">
+    
+      <ul class="navbar-nav ml-auto">
+      <li class="nav-item active"><a class="nav-link text-light" href="/ ">All</a></li>
+      {% for category in categories %}
+      <li class="nav-item"><a class="nav-link text-light" href="/?category={{category.id}}">{{category.name}}</a></li>
+      {% endfor %} {% for brand in brands %}
+      <li class="nav-item"><a class="nav-link text-light" href="/?brand={{brand.id}}">{{brand.name}}</a></li>
       {% endfor %}
     </ul>
     <!-- Links -->
-  </div>
+  
   <div>
-    <form class="form-inline" method="POST">
+    <form class="d-flex" role= "search" method="POST">
       {% csrf_token %}
-      <div>
-        <input
-          name="query"
-          class="form-control"
-          type="text"
-          placeholder="Search/enter price -range"
-          aria-label="Search"
-          value="{{search_query}}"
-        />
-      </div>
+      {% comment %} <div> {% endcomment %}
+        <input name="query" class="form-control me-2" type="search" placeholder="Search/enter price -range" aria-label="Search" value="{{search_query}}"/>
+      {% comment %} </div> {% endcomment %}
     </form>
+  </div>
   </div>
 </nav>
 <!--/.Navbar-->
+
 {% for product in products %}
 <div class="row border bg-light">
   <div class="col-md-4">
@@ -49,7 +53,7 @@
     <span class="btn btn-info disabled">{{ product.category.name }}</span>
     <h3>{{ product.name }}</h3>
     <h4 class="bold text-secondary">
-      <strong>NRs. {{ product.price }}</strong>
+      <strong>$. {{ product.price }}</strong>
     </h4>
     <form class="d-flex" action="/cart" method="GET">
       <!-- Default input -->

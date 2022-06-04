@@ -1,50 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+
+
+    <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- Bootstrap Scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    
+    
     <title>{% block title %} Electronics Commerce {% endblock %}</title>
     <style type="text/css">
-      .min-h-100 {
+        .min-h-100 {
         min-height: 100%;
       }
     </style>
   </head>
   <body>
+
+    
     <div class="row">
       <div id="header" class="bg-info col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm-4 col-md-4 col-lg-4">
             <img
-              src="https://img.favpng.com/23/7/24/logo-e-commerce-digital-marketing-brand-trade-png-favpng-xTcxcPuHCYQBUh9P8q30ETQji.jpg"
+              src="https://w7.pngwing.com/pngs/621/196/png-transparent-e-commerce-logo-logo-e-commerce-electronic-business-ecommerce-angle-text-service-thumbnail.png"
               alt="E-commerce Logo"
               style="height: 50px; width: auto"/>
           </div>
           <div class="col-sm-7 col-md-7 col-lg-7">
-            <h2>{% block header %} Electronic Commerce {% endblock %}</h2>
+            <h3>{% block header %} Electronic Commerce {% endblock %}</h3>
           </div>
-          <div class="col-sm-1 col-md-1 col-lg-1">
-            <a
-              class="btn btn-success btn-sm ml-3"
-              href="#cart-model"
-              data-toggle="modal">
+          <div class="col-sm-1 col-md-1 col-lg-1 hello">
+            <a class="btn btn-success btn-sm ml-3" href="#cart-model" data-toggle="modal">
               <span>Cart</span>
               <span class="badge badge-light">
-                <label id="cart_qty">0</label>
+                <label id="cart_qty">-</label>
               </span>
             </a>
           </div>
         </div>
       </div>
     </div>
+
+
     <div class="row">
       <div
         id="sidebar"
@@ -52,16 +61,13 @@
         {% block sidebar %}
         <ul>
           <li>
-            <a href="/admin/"
-              ><i class="fa fa-user" aria- hidden="true"></i> Admin</a>
+            <a href="/admin/"><i class="fa fa-user" aria- hidden="true"></i>Admin</a>
           </li>
           <li>
-            <a href="/"
-              ><i class="fa fa -search" aria-hidden="true"></i> Product</a>
+            <a href="/"><i class="fa fa -search" aria-hidden="true"></i>Product</a>
           </li>
           <li>
-            <a href="/cart/"
-              ><i class="fa fa-shopping-cart" aria- hidden="true"></i> Cart</a>
+            <a href="/cart/"><i class="fa fa-shopping-cart" aria- hidden="true"></i>Cart</a>
           </li>
         </ul>
         {% endblock %}
@@ -70,5 +76,7 @@
         {% block content %}{% endblock %}
       </div>
     </div>
+
+
   </body>
 </html>

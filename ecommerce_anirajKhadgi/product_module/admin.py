@@ -1,7 +1,7 @@
 from itertools import product
 from django.contrib import admin
-from .models import Brand, Category, Product
-
+from .models import Brand, CartItem, Category, Product
+from .models import CartItem
 # Register your models here.
 
 #admin.site.register(Brand)
@@ -45,3 +45,10 @@ class ProductAdmin(admin.ModelAdmin):
         model = Product
         
 admin.site.register(Product, ProductAdmin)
+
+
+
+#TODO: for cartItem
+
+
+admin.site.register(CartItem)

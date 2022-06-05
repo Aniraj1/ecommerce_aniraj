@@ -4,6 +4,9 @@ from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.utils.html import mark_safe
 
+#User model is default Django authorization
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Brand(models.Model):
@@ -42,3 +45,15 @@ class Product(models.Model):
     # it writes it's own name
     def __str__(self):
         return self.name
+    
+
+
+# TODO: Add Cart_item
+
+class CartItem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    entered_on = models.DateTimeField(auto_now_add=True)
+
+

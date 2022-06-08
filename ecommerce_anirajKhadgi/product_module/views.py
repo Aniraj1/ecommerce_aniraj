@@ -57,10 +57,13 @@ def index(request):
 
 #TODO for CartItem login
 
+
+@login_required(login_url = "/admin/login")
+
 def cart(request):
     #get request data
     product_id = request.GET.get("id")
-    quantity = request.GET.GET.get("qty")
+    quantity = request.GET.get("qty")
     
     if product_id:
         #retrieve product data
@@ -96,7 +99,7 @@ def cart(request):
     # return view
     
     context = {
-        'cart_items': cart_item,
+        'cart_items': cart_items,
         'total': total,
     }     
     

@@ -1,49 +1,118 @@
 {% extends "base.html" %} 
+{% load static %}
 {% block title %} E-Commerce {% endblock %} 
-{% block header %} 
 
-        <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02">
-          <span class="navbar-toggler-icon"></span>
-      
-          </button>
+    <!--/.Navbar Categories and Product-->
 
-        <!-- Links -->
-        <div class="collapse navbar-collapse" id="#navbarTogglerDemo02">
-              <img
-                src="https://w7.pngwing.com/pngs/621/196/png-transparent-e-commerce-logo-logo-e-commerce-electronic-business-ecommerce-angle-text-service-thumbnail.png" alt="E-commerce Logo" style="height: 50px; width: auto"/>
-              
-                <ul class="navbar-nav ml-left">
-                  <li class="nav-item active"><a class="nav-link text-light" href="/ ">All</a></li>
-                  {% for category in categories %}
-                  <li class="nav-item"><a class="nav-link text-light" href="/?category={{category.id}}">{{category.name}}</a></li>
-                  {% endfor %} {% for brand in brands %}
-                  <li class="nav-item"><a class="nav-link text-light" href="/?brand={{brand.id}}">{{brand.name}}</a></li>
-                  {% endfor %}
-                </ul>
+    {% block categories %}
+                
+            <li><a class="dropdown-item" href="/">All Products</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            {% for category in categories %}
+            <li><a class="dropdown-item" href="/?category={{category.id}}">{{category.name}}</a></li>
+            {% endfor %}
+            {% for brand in brands %}
+            <li><a class="dropdown-item" href="/?brand={{brand.id}}">{{brand.name}}</a></li>
+            {% endfor %}
 
+    {% endblock %}
+
+    {% block search %}                            
+            <form class="d-flex" role="search" method="POST">
+              {% csrf_token %}
+              <input name= "query" class="form-control me-2" type="search" placeholder="Search / enter price price -range" aria-label="Search" value="{{search_query}}">
+            </form>
+
+            
+    {% endblock %}
+
+    {% block cart %} 
+            <form class="d-flex">
+              <a href="#cart-model" data-toggle="modal">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    Cart
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                </button>
+              </a>
+            </form>
+    {% endblock %}
+
+{% comment %} Nav-bar end {% endcomment %}
+
+{% block Product_section %} 
+    {% for product in products %}
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{ product.image_url }}" alt="{{ product.name }}" /></div>
+                <div class="col-md-6">
+                    <div class="small mb-1">{{ product.brand.name }} </div>
+                    <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
+                    <div class="fs-5 mb-5">
+                        <span class="text-decoration-line-through">$45.00</span>
+                        <span>$. {{ product.price }}</span>
+                    </div>
+                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                    <div class="d-flex">
+                      <form class="d-flex" action="/cart" method="GET">
+                          <!-- Default input -->
+                          <input type="hidden" name=" id" value="{{product.id}}" />
+                          <input type="number" name=" qty" value="1" aria-label="Search" type="num"
+                          id="inputQuantity" class="form-control text-center me-3" style="max-width: 6rem"/>
+                          
+                          <button class="btn btn-outline-dark flex-shrink-0" type="submit" data-toggle="modal" data-target="#cart-model">
+                              <i class="bi-cart-fill me-1"></i>
+                              Add to cart
+                          </button>
+                      </form>
+                    </div>
+                    <br/>
+                    <div class="col-md-12">
+                      <table class="table table-sm table-bordered table-responsive ">
+                        <tr>
+                          <td>Available Quantity</td>
+                          <td>Color Code</td>
+                          <td>Brand</td>
+                          <td>Category</td>
+                          <td>Registered On</td>
+                          <td>Is Active</td>
+                          
+                        </tr>
+                        <tr>
+                          <td>{{product.quantity}}</td>
+                          <td>
+                            <div
+                              style="height: 25px; width: 25px; background-color: {{ product.color_code }};"
+                            ></div>
+                          </td>
+                          <td>{{ product.brand.name }}</td>
+                          <td>{{ product.category.name }}</td>
+                          <td>{{ product.registered_on }}</td>
+                          <td>
+                            {% if product.is_active %}
+                            <input type="checkbox" checked />
+                            {% else %}
+                            <input type="checkbox" />
+                            {% endif %}
+                          </td>
+                        </tr>
+                        
+                      </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- Links -->
-        
-        <form class="d-flex" role="search" method="POST">
-            {% csrf_token %}
-            <input class="form-control me-2" type="search" placeholder="Search / enter price" aria-label="Search" value="{{search_query}}">
-        </form>
-          <a class="btn btn-success btn-sm ml-3" href="#cart-model" data-toggle="modal">
-            <span>Cart</span>
-            <span class="bi bi-cart3">
-              <label id="cart_qty"></label>
-            </span>
-          </a>
-          
-      
-    </nav>
-    
-{% endblock %} 
+        {% endfor %}
+{% endblock %}
 
-    <!--/.Navbar-->
+
+
+
+
+
+
+
+
 
 
 {% block content %}

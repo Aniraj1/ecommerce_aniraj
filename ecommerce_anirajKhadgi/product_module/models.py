@@ -13,6 +13,9 @@ class Brand(models.Model):
     name = models.CharField(max_length=200)
     is_active = models.BooleanField()
     
+    def __str__(self):
+        return self.name
+    
 
 
 class Category(models.Model):
@@ -31,6 +34,7 @@ class Product(models.Model):
     price = models.FloatField()
     quantity = models.IntegerField()
     image_url = models.CharField(max_length=500)
+    color_code = models.CharField(max_length=20, default= "")
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     registered_on = models.DateTimeField(auto_now_add=True)
@@ -55,5 +59,11 @@ class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     entered_on = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name_plural = "Cart_Items"
+    
+    def __str__(self):
+        return self.product
 
 

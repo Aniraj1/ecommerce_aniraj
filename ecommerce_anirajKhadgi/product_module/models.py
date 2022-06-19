@@ -43,8 +43,8 @@ class Product(models.Model):
     
     def image_tag(self):
         return mark_safe(f'<img src="{self.image_url}" width="50" height="50" />')
-        image_tag.short_description = "Product" 
-       
+    image_tag.short_description = "Product"
+
     
     # it writes it's own name
     def __str__(self):
@@ -64,6 +64,5 @@ class CartItem(models.Model):
         verbose_name_plural = "Cart_Items"
     
     def __str__(self):
-        return self.product
-
+        return f"{self.product.name} {self.quantity} {self.product.price * self.quantity}"
 

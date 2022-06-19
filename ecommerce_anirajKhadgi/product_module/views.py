@@ -1,3 +1,4 @@
+from email import message
 from itertools import product
 from django.shortcuts import render, redirect
 from django.db.models import Q
@@ -109,7 +110,7 @@ def removecart(request, id):
     try:
         # get cart item and remove it
         product = Product.objects.get(id=id)
-        cart_item = CartItem.Objects.get(user = request.user, product=product)
+        cart_item = CartItem.objects.get(user = request.user, product=product)
         cart_item.delete()
     
     except CartItem.DoesNotExist:
@@ -119,3 +120,12 @@ def removecart(request, id):
     # redirect to cart 
     return redirect(cart)
 
+
+def success_page(request):
+    message = request.session["message"]
+    return render(request, "success.html", {"message": message})
+
+
+def error_page(request):
+    message = request.session["message"]
+    return render(request, "error.html", {"message": message})

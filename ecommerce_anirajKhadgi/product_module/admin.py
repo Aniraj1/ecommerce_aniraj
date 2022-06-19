@@ -1,7 +1,5 @@
-from itertools import product
 from django.contrib import admin
 from .models import Brand, CartItem, Category, Product
-from .models import CartItem
 # Register your models here.
 
 #admin.site.register(Brand)
@@ -11,7 +9,6 @@ class BrandAdmin(admin.ModelAdmin):
     search_fields = ["name",]
     # list_filter = ["brand",]
     # readonly_fields = ["quantity",]
-    
     class Meta:
         model = Brand
 
@@ -46,9 +43,5 @@ class ProductAdmin(admin.ModelAdmin):
         
 admin.site.register(Product, ProductAdmin)
 
-
-
 #TODO: for cartItem
-
-
 admin.site.register(CartItem)

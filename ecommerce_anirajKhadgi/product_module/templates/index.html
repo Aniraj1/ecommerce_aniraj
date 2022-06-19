@@ -32,7 +32,7 @@
                 <button class="btn btn-outline-dark" type="submit">
                     <i class="bi-cart-fill me-1"></i>
                     Cart
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">{{cart_items|length}}</span>
                 </button>
               </a>
             </form>
@@ -56,8 +56,8 @@
                     <div class="d-flex">
                       <form class="d-flex" action="/cart" method="GET">
                           <!-- Default input -->
-                          <input type="hidden" name=" id" value="{{product.id}}" />
-                          <input type="number" name=" qty" value="1" aria-label="Search" type="num"
+                          <input type="hidden" name="id" value="{{product.id}}" />
+                          <input type="number" name="qty" value="1" aria-label="Search" type="num"
                           id="inputQuantity" class="form-control text-center me-3" style="max-width: 6rem"/>
                           
                           <button class="btn btn-outline-dark flex-shrink-0" type="submit" data-toggle="modal" data-target="#cart-model">
@@ -119,77 +119,5 @@
 
 
 {% for product in products %}
-<div class="row border bg-light">
-  <div class="col-md-4">
-    <div class="text-center">
-      <img
-        src="{{ product.image_url }}"
-        style="height: 200px; width: auto"
-        alt="{{ product.name }}"
-      />
-    </div>
-  </div>
-  <div class="col-md-3">
-    <span class="btn btn-danger disabled">{{ product.brand.name }}</span>
-    <span class="btn btn-info disabled">{{ product.category.name }}</span>
-    <h3>{{ product.name }}</h3>
-    <h4 class="bold text-secondary">
-      <strong>$. {{ product.price }}</strong>
-    </h4>
-    <form class="d-flex" action="/cart" method="GET">
-      <!-- Default input -->
-      <input type="hidden" name=" id" value="{{product.id}}" />
-      <input
-        type="number"
-        name=" qty"
-        value="1"
-        aria-
-        label="Search"
-        class="form-control"
-        style="width: 100px"
-      />
-      <button id="btn-add-to-cart" class="btn btn-primary btn-md" type="submit" data-toggle="modal" data-target="#cart-model">
-        <i class="fa fa- shopping-cart" aria-hidden="true"></i> Add to cart
-      </button>
-    </form>
-  </div>
-  <div class="col-md-5">
-    <table class="table table -sm">
-      <tr>
-        <td>Available Quantity</td>
-        <td>{{product.quantity}}</td>
-      </tr>
-      <tr>
-        <td>Color Code</td>
-        <td>
-          <div
-            style="height: 25px; width: 25px; background-color: {{ product.color_code }};"
-          ></div>
-        </td>
-      </tr>
-      <tr>
-        <td>Brand</td>
-        <td>{{ product.brand.name }}</td>
-      </tr>
-      <tr>
-        <td>Category</td>
-        <td>{{ product.category.name }}</td>
-      </tr>
-      <tr>
-        <td>Registered On</td>
-        <td>{{ product.registered_on }}</td>
-      </tr>
-      <tr>
-        <td>Is Active</td>
-        <td>
-          {% if product.is_active %}
-          <input type="checkbox" checked />
-          {% else %}
-          <input type="checkbox" />
-          {% endif %}
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
+
 {% endfor %} {% endblock %}
